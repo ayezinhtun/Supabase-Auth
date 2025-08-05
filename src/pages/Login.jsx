@@ -14,7 +14,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      setErrorMsg(error.message);
+      alert(error.message);
     } else {
       navigate('/dashboard');
     }
@@ -25,7 +25,7 @@ export default function Login() {
       <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
         <h2 className="text-center mb-4">Login</h2>
 
-        {errorMsg && <div className="alert alert-danger">{errorMsg}</div>}
+        {/* {errorMsg && <div className="alert alert-danger">{errorMsg}</div>} */}
 
         <form onSubmit={handleLogin}>
           <div className="mb-3">
