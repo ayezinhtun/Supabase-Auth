@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
+import LogoutButton from './Logout';
 
 export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
@@ -79,7 +80,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4">Admin Dashboard - Manage Products</h2>
+      <div className='d-flex align-items-center justify-content-between'>
+         <h2 className="mb-4">Admin Dashboard - Manage Products</h2>
+          <LogoutButton/>
+      </div>
+     
       <div className="d-flex justify-content-end mb-3">
         <button className="btn btn-primary" onClick={() => openModal()}>
           Add Product

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
+import LogoutButton from './Logout';
 
 export default function ManagerDashboard() {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,11 @@ export default function ManagerDashboard() {
 
   return (
     <div className="container py-5">
-      <h2 className="text-center mb-4">Manager Dashboard - Product List</h2>
+      <div className='d-flex align-items-center justify-content-between'>
+          <h2 className="text-center mb-4">Manager Dashboard - Product List</h2>
+          <LogoutButton/>
+      </div>
+     
 
       {products.length === 0 ? (
         <p className="text-center">No products found.</p>

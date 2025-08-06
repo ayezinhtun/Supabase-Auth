@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
+import LogoutButton from './Logout';
 
 export default function UserDashboard() {
   const [profile, setProfile] = useState(null);
@@ -56,6 +57,7 @@ export default function UserDashboard() {
     <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
       <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
         <h3 className="card-title text-center mb-3">User Dashboard</h3>
+        
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
             <strong>Email:</strong> {profile.email}
@@ -64,6 +66,7 @@ export default function UserDashboard() {
             <strong>Role:</strong> {profile.role}
           </li>
         </ul>
+        <LogoutButton/>
       </div>
     </div>
   );

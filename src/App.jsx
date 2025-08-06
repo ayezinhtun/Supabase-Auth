@@ -38,10 +38,10 @@ function App() {
           .from('profiles')
           .select('role')
           .eq('id', session.user.id)
-          .single();
+           .maybeSingle();
 
         if (error) {
-          console.error('Error fetching role:', error.message);
+          console.error('Error fetching role:', error);
         } else {
           setRole(data.role);
         }
@@ -53,6 +53,45 @@ function App() {
 
     fetchUserRole();
   }, [session]);
+
+
+  useEffect(() => {
+  const getProfile = async (user) => {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('id', user.id)
+      .single();
+
+    if (error || !data) {
+      // Profile missing, create it
+      const { error: insertError } = await supabase.from('profiles').insert([
+        {
+          id: user.id,
+          email: user.email,
+          role: 'user', // default role for new OAuth users
+        },
+      ]);
+      if (insertError) console.error('Error creating profile:', insertError);
+    }
+  };
+
+  const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+    if (session?.user) {
+      getProfile(session.user);
+    }
+  });
+
+  // Also check current session on mount
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session?.user) getProfile(session.user);
+  });
+
+  return () => {
+    authListener.subscription.unsubscribe();
+  };
+}, []);
+
 
   if (loading) return <div>Loading...</div>;
 
