@@ -13,13 +13,6 @@ function App() {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-  if (window.location.hash) {
-    const cleanUrl = window.location.origin + window.location.pathname;
-    window.history.replaceState(null, '', cleanUrl);
-  }
-}, []);
-
 
   useEffect(() => {
     // Get initial session
