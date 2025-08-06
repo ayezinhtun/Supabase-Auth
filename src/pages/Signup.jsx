@@ -5,6 +5,10 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+    const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+
   // Email validation: only allow gmail.com, outlook.com, hotmail.com
   const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|hotmail\.com)$/;
   // Password validation: min 8 chars, at least 1 uppercase and 1 special char
@@ -14,13 +18,16 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
+     setEmailError('');
+    setPasswordError('');
+
     if (!emailPattern.test(email)) {
-      alert('Email is not valid. Use gmail.com, outlook.com, or hotmail.com only.');
+      setEmailError('Email is not valid. Use gmail.com, outlook.com, or hotmail.com only.');
       return;
     }
 
     if (!passwordPattern.test(password)) {
-      alert('Password must be at least 8 characters long, include 1 uppercase letter and 1 special character.');
+      setPasswordError('Password must be at least 8 characters long, include 1 uppercase letter and 1 special character.');
       return;
     }
 
@@ -76,6 +83,7 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+              {emailError && <div className="text-danger mt-1">* {emailError}</div>}
           </div>
 
           <div className="mb-3">
@@ -89,6 +97,7 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            {passwordError && <div className="text-danger mt-1">* {passwordError}</div>}
           </div>
 
           <button type="submit" className="btn btn-primary w-100 mb-3">Sign Up</button>
