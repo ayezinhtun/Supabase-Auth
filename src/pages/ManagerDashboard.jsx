@@ -22,7 +22,6 @@ export default function ManagerDashboard() {
           <LogoutButton/>
       </div>
      
-
       {products.length === 0 ? (
         <p className="text-center">No products found.</p>
       ) : (

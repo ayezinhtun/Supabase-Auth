@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -99,6 +100,10 @@ export default function Login() {
             GitHub
           </button>
         </div>
+        
+          <div className="text-center mt-3">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
       </div>
     </div>
   );

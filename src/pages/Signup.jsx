@@ -10,7 +10,7 @@ export default function Signup() {
 
 
   // Email validation: only allow gmail.com, outlook.com, hotmail.com
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|hotmail\.com)$/;
+  // const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|hotmail\.com)$/;
   // Password validation: min 8 chars, at least 1 uppercase and 1 special char
   const passwordPattern = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
 
@@ -21,10 +21,10 @@ export default function Signup() {
      setEmailError('');
     setPasswordError('');
 
-    if (!emailPattern.test(email)) {
-      setEmailError('Email is not valid. Use gmail.com, outlook.com, or hotmail.com only.');
-      return;
-    }
+    // if (!emailPattern.test(email)) {
+    //   setEmailError('Email is not valid. Use gmail.com, outlook.com, or hotmail.com only.');
+    //   return;
+    // }
 
     if (!passwordPattern.test(password)) {
       setPasswordError('Password must be at least 8 characters long, include 1 uppercase letter and 1 special character.');
